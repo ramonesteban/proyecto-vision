@@ -1,0 +1,24 @@
+INSTALL
+=======
+
+Para su correcto funcionamiento el programa necesita lo siguiente:
+ - Tkinter
+ - OpenCV
+ - PyTesser
+
+Tkinter
+-------
+
+    ~$ sudo apt-get install python-tk
+
+OpenCV
+------
+
+    ~$ sudo apt-get install python-opencv
+
+PyTesser
+--------
+
+Descarga el paquete desde el siguiente enlace y copia los archivos en el directorio donde se encuentra el programa.
+
+[PyTesser 0.0.1](https://pytesser.googlecode.com/files/pytesser_v0.0.1.zip)
