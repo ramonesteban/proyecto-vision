@@ -2,6 +2,7 @@ from Tkinter import *
 from tkFileDialog import askopenfilename
 from pytesser import *
 from squares import *
+from filters_methods import *
 import Image, ImageTk, webbrowser
 
 class Interface:
@@ -45,14 +46,17 @@ class Interface:
         self.bookimage = [1, 2, 3, 4]
         for num in booksdetected:
             bookfile = 'frontbook-%d.png' % num
-            text = image_file_to_string(bookfile)
-            text = text[:26]
-            print text
-
             image = Image.open(bookfile)
             image = image.resize((140, 140), Image.ANTIALIAS)
             self.bookimagetk[c] = ImageTk.PhotoImage(image)
             self.bookimage[c] = Label(self.root, image=self.bookimagetk[c]).grid(row=r, column=1, columnspan=2)
+
+            imagefortext = Image.open(bookfile)
+            imagefortext = grayscale(imagefortext)
+            imagefortext = binarization(imagefortext, 40)
+            imagefortext.save('frontbook-%d.png' % num)
+            text = image_file_to_string(bookfile)
+            text = text[:36]
 
             self.linkimage = Label(text=text, foreground='#00f')
             self.linkimage.bind('<1>', lambda event, text=text: self.click_link(event, text))
